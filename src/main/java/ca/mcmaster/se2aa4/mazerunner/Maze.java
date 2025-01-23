@@ -4,13 +4,19 @@ public class Maze
 {
     private char mazeGrid[][];
     private int maze_width;
+    private boolean atExit;
+
+    public Maze()
+    {
+        this.atExit = false;
+    }
 
     public void getMazeWidth(int width)
     {
         this.maze_width = width;
     }
 
-    public void getMaze(char[][] maze)
+    public void makeMaze(char[][] maze)
     {
         this.mazeGrid = maze;
     }

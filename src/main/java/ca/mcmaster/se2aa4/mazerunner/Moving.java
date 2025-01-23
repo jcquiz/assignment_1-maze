@@ -7,7 +7,7 @@ public class Moving
     private int[] exit;
     private int vertical_direction;
     private int horizontal_direction;
-
+    private boolean holdingRight;
 
     public Moving(int[] entrance, int exit[])
     {
@@ -21,6 +21,11 @@ public class Moving
         this.position[1] += horizontal_direction;
     }
 
+    public int[] updatedPosition()
+    {
+        return position;
+    }
+
     public void turnLeft()
     {
         if(vertical_direction == -1 && horizontal_direction == 0) // NORTH
@@ -30,15 +35,18 @@ public class Moving
         }
         else if(vertical_direction == 0 && horizontal_direction == 1) // EAST
         {
-
+            vertical_direction = -1;
+            horizontal_direction = 0;   
         }
         else if(vertical_direction == 1 && horizontal_direction == 0) // SOUTH
         {
-
+            vertical_direction = 0;
+            horizontal_direction = 1;
         }
         else // WEST
-        {
-
+        {   
+            vertical_direction = 1;
+            horizontal_direction = 0;
         }
     }
 
@@ -51,8 +59,8 @@ public class Moving
         }
         else if(vertical_direction == 0 && horizontal_direction == 1) // EAST
         {
-            vertical_direction = 0;
-            horizontal_direction = 1;
+            vertical_direction = 1;
+            horizontal_direction = 0;
         }
         else if(vertical_direction == 1 && horizontal_direction == 0) // SOUTH
         {
