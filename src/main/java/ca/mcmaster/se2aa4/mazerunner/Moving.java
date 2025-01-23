@@ -5,14 +5,15 @@ public class Moving
     private int[] position;
     private int[] entrance;
     private int[] exit;
-    private int vertical_direction;
-    private int horizontal_direction;
+    private int vertical_direction = 0;
+    private int horizontal_direction = 1;
     private boolean holdingRight;
 
     public Moving(int[] entrance, int exit[])
     {
+        this.position = entrance;
         this.entrance = entrance;
-        this.exit = entrance;
+        this.exit = exit;
     }
 
     public void moveForward()

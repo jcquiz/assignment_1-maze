@@ -17,7 +17,6 @@ public class Main {
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
         try {
-            
             // -i flag
             Options options = new Options();
             options.addOption("i", "input", true, "maze file");
@@ -44,6 +43,7 @@ public class Main {
             String line = reader.readLine();
             matrix = new char[line.length()][line.length()];
             int row = 0;
+
             do 
             {
                 for (int idx = 0; idx < line.length(); idx++) 
@@ -59,19 +59,12 @@ public class Main {
                 }
                 row++;
             }while ((line = reader.readLine()) != null);
- 
 
 
+            Maze maze = new Maze(matrix);
 
-            // prints the maze
-            for(int row1 = 0 ; row1 < matrix.length; row1++)
-            {
-                for(int col = 0; col < matrix[0].length; col++)
-                {
-                    System.out.print(matrix[row1][col]);
-                }
-                System.out.println();
-            }
+            boolean hi;
+            hi = maze.mazeSolve();
 
 
 
