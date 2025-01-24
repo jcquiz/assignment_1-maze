@@ -1,3 +1,9 @@
+/* Title: Assignment 1 - Maze Solver (MVP)
+ * Name:JC Quizon
+ * Date: 1/24/2025
+ * Description: The current main 
+ */
+
 package ca.mcmaster.se2aa4.mazerunner;
 
 import java.io.BufferedReader;
@@ -64,6 +70,7 @@ public class Main {
             Maze maze = new Maze(matrix);
 
             boolean hi;
+            logger.info("**** Computing path");
             hi = maze.mazeSolve();
 
 
@@ -72,8 +79,6 @@ public class Main {
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");
         }
-        logger.info("**** Computing path");
-        logger.info("PATH NOT COMPUTED");
         logger.info("** End of MazeRunner");
     }
 }

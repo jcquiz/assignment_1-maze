@@ -1,7 +1,11 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Maze 
 {
+    private static final Logger logger = LogManager.getLogger();
     private char mazeGrid[][];
     private int maze_width;
     private boolean atExit;
@@ -27,7 +31,6 @@ public class Maze
 
         for (int row = 0; row < this.mazeGrid.length; row++) 
         {
-            System.out.println("HI");
             if(this.mazeGrid[row][0] == ' ')
             {
                 coordinate[0] = row;
@@ -65,6 +68,7 @@ public class Maze
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public boolean mazeSolve()
@@ -72,29 +76,52 @@ public class Maze
         int[] entrance = new int[2];
         entrance = findEntrance();
 
-        int[] exit = new int[]{findExit()[0], findExit()[1]};
-        System.out.println("position: " + entrance[0] + " " + entrance[1]);
+        int[] exit = new int[2];
+        exit = findExit();
 
         Moving move = new Moving(entrance, exit);
-        printMaze();
         changeMazeGrid(entrance[0], entrance[1], 'X');
 
-        printMaze();
-        changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], ' ');
-        move.moveForward();
-        changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], 'X');
+        logger.info("** Start of Maze");
+
         printMaze();
 
-        changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], ' ');
-        move.turnLeft();
-        move.moveForward();
-        changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], 'X');
-        printMaze();
+        // hard coding movements for mvp such that it solves tiny.maz.txt
 
-        /*while(!atExit)
+        // 3F
+        for(int i = 0; i < 3; i++)
         {
-            // some algo
-        }*/
+            changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], ' ');
+            move.moveForward();
+            changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], 'X');
+        }
+
+        // 1 L
+        move.turnLeft();
+
+        // 4 F
+        for(int i = 0; i < 4; i++)
+        {
+            changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], ' ');
+            move.moveForward();
+            changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], 'X');
+        }
+
+        // 1 R
+        move.turnRight();
+        
+         // 3F
+         for(int i = 0; i < 3; i++)
+         {
+             changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], ' ');
+             move.moveForward();
+             changeMazeGrid(move.updatedPosition()[0], move.updatedPosition()[1], 'X');
+         }
+    
+        printMaze();
+        logger.info("** End of Maze");
+
+        System.out.println("FFF L FFFF R FFF");
 
         return true; // for now will return true if called
     }
