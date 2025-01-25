@@ -1,3 +1,7 @@
+NOTE: For the mvp, coded such that it navigates through one of the mazes, showing off the moving and turning through the maze.
+Using "java -jar target/mazerunner.jar -i ./examples/tiny.maz.txt" will demonstrate the mvp's functionality.
+
+
 # Assignment A1 - Maze Runner
 
 - Original author: Dr. [Sébastien Mosser](https://mosser.github.io)
