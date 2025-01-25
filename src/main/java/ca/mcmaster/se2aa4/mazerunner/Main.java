@@ -1,7 +1,11 @@
 /* Title: Assignment 1 - Maze Solver (MVP)
  * Name:JC Quizon
  * Date: 1/24/2025
- * Description: The current main 
+ * Description: The current program demonstrates the minimimal viable product of the maze solving
+ * program. It currently only demonstrates the maze creation but also the navigation functionality
+ * of being able to navigate through the "tiny.maz.txt" maze showing its proper turning and moving of the maze.
+ * 
+ * Note: Use "java -jar target/mazerunner.jar -i ./examples/tiny.maz.txt" to run the mvp !
  */
 
 package ca.mcmaster.se2aa4.mazerunner;
@@ -66,19 +70,17 @@ public class Main {
                 row++;
             }while ((line = reader.readLine()) != null);
 
-
+            
             Maze maze = new Maze(matrix);
 
             boolean hi;
             logger.info("**** Computing path");
             hi = maze.mazeSolve();
 
-
-
-
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");
         }
+
         logger.info("** End of MazeRunner");
     }
 }
