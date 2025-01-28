@@ -1,12 +1,20 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import ca.mcmaster.se2aa4.mazerunner.Moving.Directions;
+
 public class Moving 
 {
+    public enum Directions 
+    {
+        NORTH, EAST, SOUTH, WEST
+    }
+
     private int[] position;
     private int[] entrance;
     private int[] exit;
     private int vertical_direction = 0;
     private int horizontal_direction = 1;
+    private Directions direction = Directions.EAST;
     private boolean holdingRight;
 
     public Moving(int[] entrance, int exit[])
@@ -29,49 +37,57 @@ public class Moving
 
     public void turnLeft()
     {
-        if(vertical_direction == -1 && horizontal_direction == 0) // NORTH
+        if(direction == Directions.NORTH) // NORTH
         {
             vertical_direction = 0;
             horizontal_direction = -1;
+            direction = Directions.WEST;
         }
-        else if(vertical_direction == 0 && horizontal_direction == 1) // EAST
+        else if(direction == Directions.EAST) // EAST
         {
             vertical_direction = -1;
-            horizontal_direction = 0;   
+            horizontal_direction = 0;
+            direction = Directions.NORTH;   
         }
-        else if(vertical_direction == 1 && horizontal_direction == 0) // SOUTH
+        else if(direction == Directions.SOUTH) // SOUTH
         {
             vertical_direction = 0;
             horizontal_direction = 1;
+            direction = Directions.EAST;
         }
         else // WEST
         {   
             vertical_direction = 1;
             horizontal_direction = 0;
+            direction = Directions.SOUTH;
         }
     }
 
     public void turnRight()
     {
-        if(vertical_direction == -1 && horizontal_direction == 0) // NORTH
+        if(direction == Directions.NORTH) // NORTH
         {
             vertical_direction = 0;
             horizontal_direction = 1;
+            direction = Directions.EAST;
         }
-        else if(vertical_direction == 0 && horizontal_direction == 1) // EAST
+        else if(direction == Directions.EAST) // EAST
         {
             vertical_direction = 1;
             horizontal_direction = 0;
+            direction = Directions.SOUTH;
         }
-        else if(vertical_direction == 1 && horizontal_direction == 0) // SOUTH
+        else if(direction == Directions.SOUTH) // SOUTH
         {
             vertical_direction = 0;
             horizontal_direction = -1;
+            direction = Directions.WEST;
         }
         else // WEST
         {
             vertical_direction = -1;
             horizontal_direction = 0;
+            direction = Directions.NORTH;
         }
 
     }
