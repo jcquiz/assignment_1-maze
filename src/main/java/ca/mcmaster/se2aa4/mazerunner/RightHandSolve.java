@@ -18,24 +18,30 @@ public class RightHandSolve extends MazeSolver
         {
             // checks to see if were holding the right hand wall and if there is a wall in front of us
             super.checkForward();
+            this.forwardEmpty = super.returnEmptySpaceForward();
+
             super.checkRight();
             this.rightWallHeld = super.returnHoldingRight();
-            this.forwardEmpty = super.returnEmptySpaceForward();
+            
 
             if(this.rightWallHeld && this.forwardEmpty)
             {
                 super.moveForward();
+                System.out.print("F");
             }
 
             else if(this.rightWallHeld && !this.forwardEmpty)
             {
                 super.turnLeft();
+                System.out.print("L");
             }
 
             else if(!this.rightWallHeld) // if empty right hand side
             {
                 super.turnRight();
+                System.out.print("R");
                 super.moveForward();
+                System.out.print("F");
             }
 
             position = super.updatedPosition();

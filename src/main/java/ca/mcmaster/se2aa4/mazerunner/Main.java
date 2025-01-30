@@ -60,12 +60,10 @@ public class Main {
                 {
                         if (line.charAt(idx) == '#') 
                         {
-                            System.out.println("#");
                             matrix[row][idx] = '#';
                         } 
                         else
                         {
-                            System.out.println("a");
                             matrix[row][idx] = ' ';
                         }  
                 }
@@ -73,20 +71,22 @@ public class Main {
             }while ((line = reader.readLine()) != null);
 
             Maze maze = new Maze(matrix);
-            maze.printMaze();
+
             int[] placehold = maze.findEntrance();
             maze.changeMazeGrid(placehold, 'X');
             maze.printMaze();
             maze.changeMazeGrid(placehold, ' ');
-            maze.printMaze();
+            System.out.println("Start of Maze:\n");
 
             logger.info("**** Computing path");
             
             RightHandSolve solve = new RightHandSolve(maze);
             solve.solveMaze();
+            System.out.println();
             logger.info("**** Path computed");
             maze.changeMazeGrid(solve.returnFinal(), 'X');
             maze.printMaze();
+            System.out.println("End of Maze:\n");
 
             
 

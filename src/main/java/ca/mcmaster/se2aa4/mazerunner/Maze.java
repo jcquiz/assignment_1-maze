@@ -41,11 +41,9 @@ public class Maze
 
         for (int row = 0; row < this.mazeGrid.length; row++) 
         {
-            System.out.println("row is " + row);
             if(this.mazeGrid[row][0] == ' ')
             {
                 coordinate[0] = row;
-                System.out.println("row with space is " + row);
                 return coordinate;
             }
         }
@@ -57,7 +55,7 @@ public class Maze
         int[] coordinate = new int[2];
         coordinate[1] = this.mazeGrid.length-1;
 
-        for (int row = 0; row < this.mazeGrid.length; row++) 
+        for (int row = 0; row < this.mazeGrid[0].length; row++) 
         {
             if(this.mazeGrid[row][this.mazeGrid.length-1] == ' ')
             {    
@@ -65,7 +63,6 @@ public class Maze
                 return coordinate;
             }
         }
-
         return coordinate;
     }
 
@@ -77,9 +74,8 @@ public class Maze
             {
                 System.out.print(mazeGrid[row1][col]);
             }
-            System.out.println();
+            if(row1 != mazeGrid.length-1)System.out.println();
         }
-        System.out.println();
     }
 
    /* public boolean mazeSolve()
