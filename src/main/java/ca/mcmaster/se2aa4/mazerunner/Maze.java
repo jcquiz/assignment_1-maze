@@ -7,15 +7,13 @@ public class Maze
 {
     private static final Logger logger = LogManager.getLogger();
     private char mazeGrid[][];
-    private int maze_width;
-    private boolean atExit;
 
     public Maze(char[][] maze)
     {
         this.mazeGrid = maze;
-        this.atExit = false;
     }
 
+    // redundant (visual for user !)
     public void changeMazeGrid(int row, int width, char character)
     {
         if(character == 'X')
@@ -37,7 +35,6 @@ public class Maze
                 return coordinate;
             }
         }
-
         return coordinate;
     }
 
@@ -71,7 +68,7 @@ public class Maze
         System.out.println();
     }
 
-    public boolean mazeSolve()
+   /* public boolean mazeSolve()
     {
         int[] entrance = new int[2];
         entrance = findEntrance();
@@ -79,7 +76,7 @@ public class Maze
         int[] exit = new int[2];
         exit = findExit();
 
-        Moving move = new Moving(entrance, exit);
+        //MazeSolver move = new MazeSolver(entrance, exit);
         changeMazeGrid(entrance[0], entrance[1], 'X');
 
         logger.info("** Start of Maze");
@@ -125,5 +122,5 @@ public class Maze
 
         return true; // for now will return true if called
     }
-
+    */
 }

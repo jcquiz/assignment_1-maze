@@ -1,8 +1,8 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import ca.mcmaster.se2aa4.mazerunner.Moving.Directions;
+import ca.mcmaster.se2aa4.mazerunner.MazeSolver.Directions;
 
-public class Moving 
+public abstract class MazeSolver 
 {
     public enum Directions 
     {
@@ -12,22 +12,45 @@ public class Moving
     private int[] position;
     private int[] entrance;
     private int[] exit;
-    private int vertical_direction = 0;
-    private int horizontal_direction = 1;
-    private Directions direction = Directions.EAST;
-    private boolean holdingRight;
 
-    public Moving(int[] entrance, int exit[])
+    private int vertical_direction;
+    private int horizontal_direction;
+    
+    private Directions direction;
+    private boolean holdingRight;
+    private boolean atExit;
+
+    private Maze matrix;
+
+    public MazeSolver(Maze maze)
     {
-        this.position = entrance;
-        this.entrance = entrance;
-        this.exit = exit;
+        // holds the maze
+        this.matrix = maze;
+        
+        // sets current position + saves the entrance and exit locations
+        this.position = matrix.findEntrance();
+        this.entrance = this.position;
+        this.exit = matrix.findExit();
+
+        // initializes directional variables
+        this.holdingRight = false;
+        this.atExit = false;
+        this.direction = Directions.EAST;
+        this.vertical_direction = 0;
+        this.horizontal_direction = 1;
     }
 
     public void moveForward()
     {
         this.position[0] += vertical_direction;
         this.position[1] += horizontal_direction;
+    }
+
+    public void checkRight()
+    {
+        turnRight();
+        this.holdingRight = matrix.wallOnRight(position);
+        turnLeft();
     }
 
     public int[] updatedPosition()
@@ -91,5 +114,8 @@ public class Moving
         }
 
     }
+
+    public abstract void solveMaze();
+    // overide in class which implements this !
 
 }
