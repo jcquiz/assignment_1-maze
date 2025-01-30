@@ -13,6 +13,18 @@ public class Maze
         this.mazeGrid = maze;
     }
 
+    public boolean wallOnRight(int row, int col)
+    {
+        if (mazeGrid[row][col] == '#') return true;
+        else return false;
+    }
+
+    public boolean wallInFront(int row, int col)
+    {
+        if (mazeGrid[row][col] == ' ') return true;
+        else return false;
+    }
+
     // redundant (visual for user !)
     public void changeMazeGrid(int row, int width, char character)
     {

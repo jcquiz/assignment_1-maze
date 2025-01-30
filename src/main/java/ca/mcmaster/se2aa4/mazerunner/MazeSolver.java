@@ -18,6 +18,7 @@ public abstract class MazeSolver
     
     private Directions direction;
     private boolean holdingRight;
+    private boolean emptySpaceForward;
     private boolean atExit;
 
     private Maze matrix;
@@ -49,9 +50,15 @@ public abstract class MazeSolver
     public void checkRight()
     {
         turnRight();
-        this.holdingRight = matrix.wallOnRight(position);
+        this.holdingRight = matrix.wallOnRight(position[0] + vertical_direction, position[1] + horizontal_direction);
         turnLeft();
     }
+
+    public void checkForward()
+    {
+        this.emptySpaceForward = matrix.wallInFront(position[0] + vertical_direction, position[1] + horizontal_direction);
+    }
+
 
     public int[] updatedPosition()
     {

@@ -12,9 +12,23 @@ public class RightHandSolve extends MazeSolver
     @Override
     public void solveMaze() 
     {
-        //this.super
-        // put algo here !
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        // while one boolean is false
+        // check forward check right
+
+        // if holding right hand side and next space empty
+
+            // {forward}
+
+        // if holding right hand side and next space taken
+
+            // turn left
+
+        // if empty right hand side
+
+            // turn right
+            // forward
+        
     }
     
 }
