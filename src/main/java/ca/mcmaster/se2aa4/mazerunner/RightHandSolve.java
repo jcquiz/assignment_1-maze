@@ -32,7 +32,7 @@ public class RightHandSolve extends MazeSolver
                 super.turnLeft();
             }
 
-            else // if empty right hand side and forward empty
+            else if(!this.rightWallHeld) // if empty right hand side
             {
                 super.turnRight();
                 super.moveForward();
@@ -42,7 +42,12 @@ public class RightHandSolve extends MazeSolver
             super.checkExitReached(position);
         }while(!super.returnAtExit());
      
-        System.out.println("position is " + this.position[0] + " and " + this.position[1]);
+        //System.out.println("position is " + this.position[0] + " and " + this.position[1]);
+    }
+
+    public int[] returnFinal()
+    {
+        return position;
     }
     
 }

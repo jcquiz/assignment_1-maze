@@ -26,12 +26,12 @@ public class Maze
     }
 
     // redundant (visual for user !)
-    public void changeMazeGrid(int row, int width, char character)
+    public void changeMazeGrid(int[] array, char character)
     {
         if(character == 'X')
-        this.mazeGrid[row][width] = 'X';
+        this.mazeGrid[array[0]][array[1]] = 'X';
         else // replace X with empty space
-        this.mazeGrid[row][width] = ' ';
+        this.mazeGrid[array[0]][array[1]] = ' ';
     }
 
     public int[] findEntrance()
@@ -41,9 +41,11 @@ public class Maze
 
         for (int row = 0; row < this.mazeGrid.length; row++) 
         {
+            System.out.println("row is " + row);
             if(this.mazeGrid[row][0] == ' ')
             {
                 coordinate[0] = row;
+                System.out.println("row with space is " + row);
                 return coordinate;
             }
         }
