@@ -70,13 +70,11 @@ public class Main {
                 row++;
             }while ((line = reader.readLine()) != null);
 
-
-            
             Maze maze = new Maze(matrix);
-            RightHandSolve solve = new RightHandSolve(maze);
-
             logger.info("**** Computing path");
-            //hi = maze.mazeSolve();
+            RightHandSolve solve = new RightHandSolve(maze);
+            solve.solveMaze();
+            
 
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");

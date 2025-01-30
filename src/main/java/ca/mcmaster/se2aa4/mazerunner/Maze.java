@@ -19,7 +19,7 @@ public class Maze
         else return false;
     }
 
-    public boolean wallInFront(int row, int col)
+    public boolean emptyInFront(int row, int col)
     {
         if (mazeGrid[row][col] == ' ') return true;
         else return false;

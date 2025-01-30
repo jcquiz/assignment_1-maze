@@ -41,12 +41,6 @@ public abstract class MazeSolver
         this.horizontal_direction = 1;
     }
 
-    public void moveForward()
-    {
-        this.position[0] += vertical_direction;
-        this.position[1] += horizontal_direction;
-    }
-
     public void checkRight()
     {
         turnRight();
@@ -56,13 +50,38 @@ public abstract class MazeSolver
 
     public void checkForward()
     {
-        this.emptySpaceForward = matrix.wallInFront(position[0] + vertical_direction, position[1] + horizontal_direction);
+        this.emptySpaceForward = matrix.emptyInFront(position[0] + vertical_direction, position[1] + horizontal_direction);
     }
 
+    public void checkExitReached(int[] position)
+    {
+        if (position[0] == exit[0] && position[1] == exit[1]) atExit = true;
+    }
+
+    public boolean returnAtExit()
+    {
+        return this.atExit;   
+    }
+
+    public boolean returnHoldingRight()
+    {
+        return this.holdingRight;
+    }
+
+    public boolean returnEmptySpaceForward()
+    {
+        return this.emptySpaceForward;
+    }
 
     public int[] updatedPosition()
     {
-        return position;
+        return new int[] {position[0], position[1]};
+    }
+
+    public void moveForward()
+    {
+        this.position[0] += vertical_direction;
+        this.position[1] += horizontal_direction;
     }
 
     public void turnLeft()
