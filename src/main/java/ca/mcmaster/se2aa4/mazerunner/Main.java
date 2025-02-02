@@ -84,6 +84,7 @@ public class Main {
             solve.solveMaze();
             System.out.println();
             logger.info("**** Path computed");
+            
             maze.changeMazeGrid(solve.returnFinal(), 'X');
             maze.printMaze();
             System.out.println("End of Maze:\n");

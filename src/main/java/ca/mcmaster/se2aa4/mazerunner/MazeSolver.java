@@ -1,6 +1,6 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import ca.mcmaster.se2aa4.mazerunner.MazeSolver.Directions;
+//import ca.mcmaster.se2aa4.mazerunner.MazeSolver.Directions;
 
 public abstract class MazeSolver 
 {
@@ -21,6 +21,10 @@ public abstract class MazeSolver
     private boolean emptySpaceForward;
     private boolean atExit;
 
+    private StringBuffer s = new StringBuffer();
+    private StringBuffer f = new StringBuffer();
+    private boolean actualMove;
+
     private Maze matrix;
 
     public MazeSolver(Maze maze)
@@ -39,6 +43,12 @@ public abstract class MazeSolver
         this.direction = Directions.EAST;
         this.vertical_direction = 0;
         this.horizontal_direction = 1;
+        this.actualMove = false;
+    }
+
+    public void updateActualMove(boolean value)
+    {
+        actualMove = value;
     }
 
     public void checkRight()
@@ -82,6 +92,7 @@ public abstract class MazeSolver
     {
         this.position[0] += vertical_direction;
         this.position[1] += horizontal_direction;
+        if(this.actualMove) s.append("F");
     }
 
     public void turnLeft()
@@ -110,6 +121,7 @@ public abstract class MazeSolver
             horizontal_direction = 0;
             direction = Directions.SOUTH;
         }
+        if(this.actualMove) s.append("L");
     }
 
     public void turnRight()
@@ -138,7 +150,46 @@ public abstract class MazeSolver
             horizontal_direction = 0;
             direction = Directions.NORTH;
         }
+        if(this.actualMove) s.append("R");
 
+    }
+
+    public String returnCanonical()
+    {
+        String canonical = s.toString();
+        return canonical;
+    }
+
+    public String factorizedOutput()
+    {
+        String canonical = returnCanonical();
+        int count = 0;
+        char current_char = 'z';
+
+        for(int i=0; i < canonical.length(); i++)
+        {
+            if (i == 0) 
+            {
+                current_char = canonical.charAt(i);
+                count++;
+            }
+            else
+            {
+                if(canonical.charAt(i) == current_char)
+                {
+                    count++;
+                }
+                else // not same char
+                {
+                    f.append(String.valueOf(count) + current_char + " ");
+                    current_char = canonical.charAt(i);
+                    count = 1;
+                }
+            }
+        }
+        f.append(String.valueOf(count) + current_char + " ");
+        
+        return f.toString();
     }
 
     public abstract void solveMaze();
