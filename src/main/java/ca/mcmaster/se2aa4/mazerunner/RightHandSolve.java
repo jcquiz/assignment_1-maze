@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class RightHandSolve extends MazeSolver 
 {
-    private int[] position = super.updatedPosition();
+    private int[] position = moves.updatedPosition();
     private boolean forwardEmpty;
     private boolean rightWallHeld;
 
@@ -17,39 +17,39 @@ public class RightHandSolve extends MazeSolver
         do
         {
             // checks to see if were holding the right hand wall and if there is a wall in front of us
-            
-            updateActualMove(false);
 
-            super.checkForward();
-            this.forwardEmpty = super.returnEmptySpaceForward();
+            check.checkForward();
+            this.forwardEmpty = check.returnEmptySpaceForward();
 
-            super.checkRight();
-            this.rightWallHeld = super.returnHoldingRight();
-            
-            updateActualMove(true);
+            check.checkRight();
+            this.rightWallHeld = check.returnHoldingRight();
+        
 
             if(this.rightWallHeld && this.forwardEmpty)
             {
-                super.moveForward();
+                moves.moveForward();
+                str.appendString('F');
             }
 
             else if(this.rightWallHeld && !this.forwardEmpty)
             {
-                super.turnLeft();
+                moves.turnLeft();
+                str.appendString('L');
             }
 
             else if(!this.rightWallHeld) // if empty right hand side
             {
-                super.turnRight();
-                super.moveForward();
+                moves.turnRight();
+                str.appendString('R');
+                moves.moveForward();
+                str.appendString('F');
             }
 
-            position = super.updatedPosition();
-            super.checkExitReached(position);
-        }while(!super.returnAtExit());
+            position = moves.updatedPosition();
+            check.checkExitReached(position);
+        }while(!check.returnAtExit());
      
-        System.out.println(super.returnCanonical());
-        System.out.println(super.factorizedOutput());
+        System.out.println(str.factorizedOutput());
     }
 
     public int[] returnFinal()
