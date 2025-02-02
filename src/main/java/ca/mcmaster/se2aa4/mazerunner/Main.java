@@ -30,7 +30,8 @@ public class Main {
             // -i flag
             Options options = new Options();
             options.addOption("i", "input", true, "maze file");
-            
+            options.addOption("p", true, "path validity");
+
             CommandLineParser parser = new DefaultParser();
             CommandLine cmd = parser.parse(options, args);
             String mazeFile;
@@ -40,14 +41,12 @@ public class Main {
             }
             else
             {
-                throw new Exception("error");
+                throw new Exception("error no -i flag found, please try again");
             }
 
             logger.info("**** Reading the maze from file " + mazeFile);
             BufferedReader reader = new BufferedReader(new FileReader(mazeFile));
         
-
-            
             // puts the maze into a 2d array of characters
             char matrix[][];
             String line = reader.readLine();
@@ -72,6 +71,11 @@ public class Main {
 
             Maze maze = new Maze(matrix);
 
+            if(cmd.hasOption("p")) {
+                System.out.println(args[3]);
+            }
+            else if(args.length == 2)
+            {
             int[] placehold = maze.findEntrance();
             maze.changeMazeGrid(placehold, 'X');
             maze.printMaze();
@@ -88,11 +92,15 @@ public class Main {
             maze.changeMazeGrid(solve.returnFinal(), 'X');
             maze.printMaze();
             System.out.println("End of Maze:\n");
-
+            }
+            else
+            {
+                throw new Exception("incorrect input, use -i some_maze.txt to find the path of a maze\nand -i some_maze.txt -p FFFF to find the path validity given some path FFFF");
+            }
             
 
         } catch(Exception e) {
-            logger.error("/!\\ An error has occured /!\\");
+            logger.error(e);
         }
 
         logger.info("** End of MazeRunner");
