@@ -28,7 +28,6 @@ public class Main {
     private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
-        logger.info("** Starting Maze Runner");
         try {
             // adds -i and -p flag
             Options options = new Options();
@@ -47,7 +46,6 @@ public class Main {
                 throw new Exception("error no -i flag found, please try again");
             }
 
-            logger.info("**** Reading the maze from file " + mazeFile);
             BufferedReader reader = new BufferedReader(new FileReader(mazeFile));
         
             // puts the maze into a 2d array of characters
@@ -87,22 +85,9 @@ public class Main {
             // finds maze solution
             else if(args.length == 2)
             {
-            int[] placehold = maze.findEntrance();
-            maze.changeMazeGrid(placehold, 'X');
-            maze.printMaze();
-            maze.changeMazeGrid(placehold, ' ');
-            System.out.println("Start of Maze:\n");
-
-            logger.info("**** Computing path");
-            
             RightHandSolve solve = new RightHandSolve(maze);
             solve.solveMaze();
             System.out.println();
-            logger.info("**** Path computed");
-            
-            maze.changeMazeGrid(solve.returnFinal(), 'X');
-            maze.printMaze();
-            System.out.println("End of Maze:\n");
             }
             else
             {
@@ -111,10 +96,8 @@ public class Main {
             
 
         } catch(Exception e) {
-            logger.error(e);
+            System.out.println(e);
         }
-
-        logger.info("** End of MazeRunner");
     }
 }
 
