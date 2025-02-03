@@ -20,6 +20,9 @@ import org.apache.commons.cli.Options;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//import main.java.ca.mcmaster.se2aa4.mazerunner.Maze;
+//import main.java.ca.mcmaster.se2aa4.mazerunner.RightHandSolve;
+
 public class Main {
 
     private static final Logger logger = LogManager.getLogger();
@@ -27,7 +30,7 @@ public class Main {
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
         try {
-            // -i flag
+            // adds -i and -p flag
             Options options = new Options();
             options.addOption("i", "input", true, "maze file");
             options.addOption("p", true, "path validity");
@@ -71,9 +74,17 @@ public class Main {
 
             Maze maze = new Maze(matrix);
 
+            //path validity
             if(cmd.hasOption("p")) {
-                System.out.println(args[3]);
+                PathValidity valid = new PathValidity(maze);
+                String path = args[3];
+                boolean validity = valid.pathValid(path);
+                if (validity) System.out.println("Path solves the maze.");
+                else System.out.println("The path given does not solve the maze.");
+
             }
+
+            // finds maze solution
             else if(args.length == 2)
             {
             int[] placehold = maze.findEntrance();
