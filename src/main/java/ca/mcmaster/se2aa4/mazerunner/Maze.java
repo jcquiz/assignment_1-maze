@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+// class regarding maze matrix data
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,15 +27,7 @@ public class Maze
         else return false;
     }
 
-    // redundant (visual for user !)
-    public void changeMazeGrid(int[] array, char character)
-    {
-        if(character == 'X')
-        this.mazeGrid[array[0]][array[1]] = 'X';
-        else // replace X with empty space
-        this.mazeGrid[array[0]][array[1]] = ' ';
-    }
-
+    // looks for the western entrance (only empty space in the first column)
     public int[] findEntrance()
     {
         int[] coordinate = new int[2];
@@ -50,6 +44,7 @@ public class Maze
         return coordinate;
     }
 
+    // looks for eastern exit (only empty space in the last column)
     public int[] findExit()
     {
         int[] coordinate = new int[2];
@@ -64,18 +59,6 @@ public class Maze
             }
         }
         return coordinate;
-    }
-
-    public void printMaze()
-    {
-        for(int row1 = 0 ; row1 < mazeGrid.length; row1++)
-        {
-            for(int col = 0; col < mazeGrid[0].length; col++)
-            {
-                System.out.print(mazeGrid[row1][col]);
-            }
-            if(row1 != mazeGrid.length-1)System.out.println();
-        }
     }
 
 }

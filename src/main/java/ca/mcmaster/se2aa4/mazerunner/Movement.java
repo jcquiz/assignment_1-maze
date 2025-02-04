@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+// deals with tracking direction faced as well as movement through the matrix
+
 public class Movement 
 {
     public enum Directions 
@@ -11,8 +13,8 @@ public class Movement
     private int[] entrance;
     private int[] exit;
 
-    private int vertical_direction;
-    private int horizontal_direction;
+    private int vertical_direction; // -1 implies north, +1 implies south
+    private int horizontal_direction; // -1 implies west, +1 implies east
     
     private Directions direction;
     private Maze matrix;
@@ -28,6 +30,14 @@ public class Movement
               this.horizontal_direction = 1;
               this.direction = Directions.EAST;
     }
+
+    /*
+     * move forward will move forward in either the vertical or horizontal direction
+     * dependent on which way the token is facing stored by this.direction
+     * 
+     * it will turn left from north by making horizontal_direction = -1 such that when move forward is
+     * called, it moves west across the matrix
+     */
 
     public void moveForward()
     {

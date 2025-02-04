@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+// responsible for tracking canonical string and compressing it into factorized
+
 public class StringOutput 
 {
     private StringBuffer s = new StringBuffer();
@@ -20,22 +22,22 @@ public class StringOutput
     {
         String canonical = returnCanonical();
         int count = 0;
-        char current_char = 'z';
+        char current_char = 'z'; // placeholder char
 
         for(int i=0; i < canonical.length(); i++)
         {
-            if (i == 0) 
+            if (i == 0) // sets first character to the current_char and increments
             {
                 current_char = canonical.charAt(i);
                 count++;
             }
             else
             {
-                if(canonical.charAt(i) == current_char)
+                if(canonical.charAt(i) == current_char) // same char increments count
                 {
                     count++;
                 }
-                else // not same char
+                else // not same char adds the number of that consecutive char to the StringBuffer
                 {
                     f.append(String.valueOf(count) + current_char + " ");
                     current_char = canonical.charAt(i);
@@ -43,8 +45,7 @@ public class StringOutput
                 }
             }
         }
-        f.append(String.valueOf(count) + current_char + " ");
-        
+        f.append(String.valueOf(count) + current_char + " "); // appends the last number of chars, not appended as for loop ends
         return f.toString();
     }
 

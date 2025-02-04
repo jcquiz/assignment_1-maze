@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+// class responsible for doing checks such as checking for empty squares or walls
+
 public class Checks
 {
     private boolean holdingRight;
@@ -19,8 +21,8 @@ public class Checks
          matrix = maze;
          entrance = maze.findEntrance();
          exit = maze.findExit();
-         pos = move.updatedPosition();
-         direc = move.updateDirec();
+         pos = move.updatedPosition(); // stores current position
+         direc = move.updateDirec(); // stores direction being faced in terms of x and y axis
     }
 
     public void checkRight()
@@ -29,7 +31,7 @@ public class Checks
         pos = move.updatedPosition();
         direc = move.updateDirec();
         this.holdingRight = matrix.wallOnRight(pos[0] + direc[0], pos[1] + direc[1]);
-        move.turnLeft();
+        move.turnLeft(); // resets direction to original direction
     }
 
     public void checkForward()

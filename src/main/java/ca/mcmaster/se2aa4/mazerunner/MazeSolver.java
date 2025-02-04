@@ -1,6 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-//import ca.mcmaster.se2aa4.mazerunner.MazeSolver.Directions;
+// generic MazeSolver, which has the abstract to solve a maze
+// algorithms implemented within solveMaze()
 
 public abstract class MazeSolver 
 {
