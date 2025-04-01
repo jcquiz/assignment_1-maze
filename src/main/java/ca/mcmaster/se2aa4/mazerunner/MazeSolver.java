@@ -9,13 +9,14 @@ public abstract class MazeSolver
     protected Movement moves;
     protected Checks check;
     protected StringOutput str = new StringOutput();
+    Factory newFactory = new Factory();
 
     public MazeSolver(Maze maze)
     {
         // holds the maze
         this.matrix = maze;
-        this.moves = new Movement(matrix);
-        this.check = new Checks(matrix, moves);
+        this.moves = newFactory.getMovement("Movement", matrix);
+        this.check = newFactory.getChecks("Checks", matrix, moves);
     }
 
     public abstract void solveMaze();

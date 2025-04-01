@@ -72,26 +72,29 @@ public class Main {
                 row++;
             }while ((line = reader.readLine()) != null);
 
-
-
-            Maze maze = new Maze(matrix);
+            Factory factory = new Factory();
+            Maze maze = factory.getMaze("Maze", matrix);
+            Editor editor = factory.getEditor("Editor");
 
             //path validity
             if(cmd.hasOption("p") && args.length == 4) 
             {
-                PathValidity valid = new PathValidity(maze);
+                PathValidity valid = factory.getPathValidity("pathValidity", maze);
                 String path;
                 if(args[2].equalsIgnoreCase("-p")) path = args[3];
                 else path = args[1];
-                boolean validity = valid.pathValid(path);
+
+                editor.action("pathValid", valid, path);
+                boolean validity = editor.returnBool();
+
                 if (validity) System.out.println("Path solves the maze.");
                 else System.out.println("The path given does not solve the maze.");
             }
             // finds maze solution
             else if(args.length == 2)
             {
-            RightHandSolve solve = new RightHandSolve(maze);
-            solve.solveMaze();
+            MazeSolver solve = factory.getMazeSolver("RightHandSolve", maze);
+            editor.action("MazeSolver", solve);
             }
             else
             {

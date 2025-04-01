@@ -48,11 +48,11 @@ public class Maze
     public int[] findExit()
     {
         int[] coordinate = new int[2];
-        coordinate[1] = this.mazeGrid.length-1;
+        coordinate[1] = this.mazeGrid[0].length-1;
 
-        for (int row = 0; row < this.mazeGrid[0].length; row++) 
+        for (int row = 0; row < this.mazeGrid.length; row++) 
         {
-            if(this.mazeGrid[row][this.mazeGrid.length-1] == ' ')
+            if(this.mazeGrid[row][this.mazeGrid[0].length-1] == ' ')
             {    
                 coordinate[0] = row;
                 return coordinate;

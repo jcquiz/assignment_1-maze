@@ -6,11 +6,12 @@ public class PathValidity
 {
     protected Movement moves;
     protected Checks check;
+	Factory factory = new Factory();
 
     public PathValidity(Maze maze)
     {
-        moves = new Movement(maze);
-        check = new Checks(maze, moves);
+		moves = factory.getMovement("Movement", maze);
+		check = factory.getChecks("Checks", maze, moves);
     }
 
 // loops through a string, running through the maze with the inputs given untill it reaches the exit
